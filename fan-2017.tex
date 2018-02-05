@@ -3,6 +3,7 @@
 
 \DeclareMathOperator{\esssup}{esssup}
 \DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Int}{Int}
 
 
 \begin{document}
@@ -15,12 +16,12 @@
 	\vspace{0.5em}
 	\abstract{Краткое содержание курса А. Д. Баранова, прочитанного в осеннем семестре 2017 года.}
 
-	\section{Топологические векторные пространства}
+\section{Топологические векторные пространства}
 
-	\subsection{Основные определения}
+\subsection{Основные определения}
 
 	\begin{de}
-		Пусть $X$~--- линейное пространство над $\R$ или $\C$, снабжённое топологией $\tau$. Пару $(X, \, \tau)$ называют \ti{топологическим векторным пространством,} если сложение и умножение на скаляр непрерывны относительно $\tau$, и каждая точка является замкнутым множеством.
+		Пусть $X$~--- векторное пространство над $\R$ или $\C$, снабжённое топологией $\tau$. Пару $(X, \, \tau)$ называют \ti{топологическим векторным пространством,} если сложение и умножение на скаляр непрерывны относительно $\tau$, и каждая точка является замкнутым множеством.
 	\end{de}
 
 	\begin{exm}
@@ -61,5 +62,191 @@
 	\begin{thm}[Колмогоров]
 		ТВП нормируемо $\eqv$ оно локально ограничено и локально выпукло.
 	\end{thm}
+
+\subsection{Топология, порождённая счётным семейством полунорм}
+
+	\begin{de}
+		Пусть $X$~--- векторное пространство над $\R$ или $\C$. Функцию 
+		$p\col \; X \to [0, \, \infty)$ называют \ti{полунормой}, если выполняются следующие условия:
+		\begin{enumerate}
+			\item $p(\lambda x) = |\lambda| p(x)$,
+			\item $p(x + y) \leqslant p(x) + p(y)$.
+		\end{enumerate}
+	\end{de}
+
+	\begin{exm}
+		На $C\big((-1, \, 1)\big)$ полунормой является
+		\[
+			\|f\| = \max\limits_{\left[-\tfrac{1}{2}, \, \tfrac{1}{2}\right]} |f|.
+		\]
+	\end{exm}
+
+	\begin{de}
+		Семейство полунорм $\{p_n\}_{n \in \N}$ на ВП $X$ называют \ti{определяющим,} если 
+		\[
+			\all n \; p_n(x) = 0 \so x = 0.
+		\] 
+	\end{de}
+
+	\begin{de}
+		Топологией, \ti{порождённой} семейством полунорм, называют самую грубую топологию, относительно которой все они непрерывны. 
+	\end{de}
+
+	\begin{st}
+		Базой этой топологии являются множества вида
+		\[
+			V_{\varepsilon, \, i_1, \,  \ldots, i_n}(x_0) = \big\{x \in X \, \big| \, \all k \; p_{i_k}(x - x_0) < \varepsilon \big\}.
+		\]
+	\end{st}
+
+	\begin{st}
+		Семейство полунорм определяющее $\eqv$ топология, порождённая им, хаусдорфова.
+	\end{st}
+
+	\begin{st}
+		Векторное пространство с топологией, порождённой определяющим семейством полунорм~--- локально выпуклое ТВП.
+	\end{st}
+
+	\begin{thm}
+		Топология $\tau$, порождённая определяющим семейством полунорм $p_n$, задаётся метрикой
+		\[
+			\rho(x, \, y) = \sum \limits_{n = 1}^{\infty} \dfrac{\min(1, \, p_n(x - y))}{2^n}.
+		\]
+		\begin{proof}
+			$\hphantom{.}$
+			\begin{enumerate}
+
+				\item Очевидно, что ряд сходится, причём $\rho(x, \, y) \geqslant 0$.
+				\item Если $\rho(x, \, y) = 0$, то все слагаемые нулевые, поэтому $x = y$.
+				\item $\rho(x,\, y) = \rho(y, \, x)$.
+				\item Если верно неравенство
+				\[
+					\all a, \, b \geqslant 0 \; \min (1, \, a + b) \leqslant \min(1, \, a) + \min(1, \, b),
+				\]
+				то 
+				\[
+					\min(1, \, p_n(x - z)) \leqslant \min\big(1, \, p_n(x - y) + p_n(y - z)\big) \leqslant \min(1, \, p_n(x - y)) + \min(1, \, p_n(y - z)),
+				\]
+				откуда сразу следует искомый результат.
+				\item Неравенство довольно просто доказать.
+				\item Осталось лишь понять, что этой метрикой задаётся нужная топология. Для этого достаточно доказать, что
+				\[
+						\all B_{\delta}(0) \; \ex V_{\varepsilon, \, i_1, \, \ldots, \, i_n}(0) \col \, V_{\varepsilon} \subset B_{\delta}
+				\]
+				и, напротив,
+				\[
+						\all V_{\varepsilon, \, i_1, \, \ldots, \, i_n}(0) \; \ex B_{\delta}(0)  \col  \, B_{\delta} \subset \, V_{\varepsilon}.
+				\]
+
+				Докажем сначала первое включение. Найдётся такое $N$, что
+				\[
+					\all N' > N \; \sum\limits_{n = N'}^{\infty} \dfrac{1}{2^n} < \dfrac{\delta}{2} \so \all x \in B_{\delta} \; \sum\limits_{n = N'}^{\infty} \dfrac{\min\big(1, \, p_n(x)\big)}{2^n} < \dfrac{\delta}{2}.
+				\]
+				Возьмём $\varepsilon = \dfrac{\delta}{2}$ и $n = N$. Тогда
+				\[
+					x \in V_{\varepsilon} \so \all k 
+					\leqslant N \; p_k(x) < \dfrac{\delta}{2}.
+				\]
+				Поэтому
+				\[	
+					\sum\limits_{n = 1}^{N} \dfrac{\min\big(1, \, p_n(x)\big)}{2^n} \leqslant \sum\limits_{n = 1}^{N} \dfrac{p_n(x)}{2^n} < \dfrac{\delta}{2}\sum\limits_{n = 1}^{N} \dfrac{1}{2^n} < \dfrac{\delta}{2}. 
+				\]
+				Таким образом получаем, что из того, что $x \in V_{\varepsilon}$, следует, что
+				\[
+					\sum \limits_{n = 1}^{\infty} \dfrac{\big(1, \, p_n(x)\big)}{2^n} < \delta \so x \in B_{\delta}.
+				\]
+				\item Докажем теперь второе включение. Не умаляя общности, положим $\varepsilon < 1$. Пусть $\max(i_1, \, \ldots, \, i_n) = N$. Возьмём
+				\[
+					\delta = \dfrac{\varepsilon}{2^N}.
+				\]
+				Если $x \in B_{\delta}$, то
+				\[
+					\sum\limits_{n = 1}^{\infty} \dfrac{p_n(x)}{2^n} < \dfrac{\varepsilon}{2^N} \so \sum\limits_{n = 1}^{N} \dfrac{p_n(x)}{2^n} < \dfrac{\varepsilon}{2^N} \so \all n \leqslant N \; p_n(x) < \varepsilon.
+				\] 
+				Отсюда получаем, что $x \in V_{\varepsilon}$.
+			\end{enumerate}
+		\end{proof}
+	\end{thm}
+
+	\begin{thm} 
+		Пусть $X$~--- ТВП с топологией $\tau$, порождённой определяющим семейством полунорм $p_n$. 
+		\begin{enumerate}
+			\item $x_k \to x_0 \eqv \all n \; p_n(x_k - x_0) \to 0$,
+			\item $E \subset X$ ограничено $\eqv \all n \; p_n$ ограничены на $E$. 
+		\end{enumerate}
+		\begin{proof}
+			$\hphantom{.}$
+			\begin{enumerate}
+				\item $\so\col$ Пусть $x_k \to x_0$. Это означает, что $\rho(x_k, \, x_0) \to 0$, т.е.
+				\[
+					\sum\limits_{n = 1}^{\infty} \dfrac{\min\big(1, \, p_n(x_n - x_0)\big)}{2^n} \to 0 \so \all n \; p_n(x_k - x_0) \to 0.
+				\]
+
+				$\bso\col$ Пусть все $p_n$ стремятся к нулю. Рассмотрим $\varepsilon > 0$. Пусть $N$ таково, что
+				\[
+					\sum\limits_{n = N + 1}^{\infty} \dfrac{1}{2^n} < \dfrac{\varepsilon}{2}.
+				\]
+				Тогда 
+				\[
+					\rho(x_k, \, x_0) < \sum\limits_{n = 1}^{N} \dfrac{\min\big(1, \, p_n(x_k - x_0)\big)}{2^n} + \dfrac{\varepsilon}{2}.
+				\]
+				Выбирая достаточно большое $k$, первую сумму можно сделать меньше $\dfrac{\varepsilon}{2}$.
+
+				\item $\so\col$ Пусть множество $E$ ограничено. Фиксируем некоторую полунорму $p_n$ из семейства; рассмотрим окрестность $V_{\varepsilon, \, n}(0)$. Т.к. $V$ является окрестностью нуля, $E \subset kV$ для некоторого $k$. Но тогда $p_n(x) < k$ для любого $x$ из $E$.
+
+				$\bso\col$ Пусть теперь все полунормы ограничены на $E$. Возьмём $U$~--- произвольную окрестность нуля, и $V_{\varepsilon, \, i_1, \, \ldots, \, i_n}(0) \subset U$. Найдутся $M_i$ такие, что $\all x \in E \; p_i(x) < M_i$. Отсюда следует, что $E \in nU$, если $n > M_in_i$ для всех $i$. Поэтому $E$ ограничено. Если умножить $V$ на число, превосходящее $M_{i_1}, \, \ldots\, M_{i_n}$, то получится окрестность, содержащая $E$.  
+			\end{enumerate} 
+		\end{proof}
+	\end{thm}
+
+	\begin{exm}
+		Примеры~--- $C\big((a, \, b)\big)$, $C^{\infty}(\Omega), \; \Omega \subset \R^n$~--- открытое множество. На $C^{\infty}(\Omega)$ нужно построить последовательность компактов $K_n$ такую, что $K_n \subset \Int K_{n+1}$ и $\cup K_n = \Omega$. После этого полунорма $p_n$ определяется следующим образом:
+		\[
+			p_n(f) = \max\limits_{x \in K_n, \; |\alpha| \leqslant n} \big|D^{\alpha} f(x)\big|.
+		\]
+		Оба этих пространства полны. 
+
+		Гораздо больше написано в параграфе <<Примеры>> первой главы книжки Рудина.
+	\end{exm}
+
+\subsection{Функционал Минковского}
+	
+	\begin{de}
+		Пусть $X$~--- ТВП, $A \subset X$. $A$ называют \ti{поглощающим}, если 
+		\[
+			\all x \in X \; \ex t > 0 \col \; x \in tA.
+		\]
+	\end{de}
+
+	\begin{rem}
+		Если $A$ поглощающее, то $0 \in A$.
+	\end{rem}
+
+	\begin{st}
+		Любая окрестность нуля~--- поглощающее множество.
+		\begin{proof}
+			Это можно вывести, например, из того, что ноль~--- ограниченное множество, а точка~--- ноль после параллельного переноса. Параллельный перенос, как непрерывное линейное оторбажение, сохраняет ограниченность.
+
+			Иначе это можно увидеть так: понятно, что $x \cdot 0 = 0$, а из непрерывности умножения следует, что
+			\[
+				\all U(0) \; \ex V(x), \, W_{\varepsilon}(0)\col \; V W_{\varepsilon} \subset U.
+			\]
+			Поэтому
+			\[
+				\dfrac{1}{t} \in W_{\varepsilon} \so \dfrac{x}{t} \in U \so x \in tU.
+			\]
+		\end{proof}
+	\end{st}
+
+	\begin{de}
+		Пусть $A$~--- поглощающее множество. Тогда 
+		\[
+			\mathfrak{m}_A(x) = \inf \left\{t \, \big| \, \dfrac{x}{t} \in A\right\} \text{~--- функционал Минковского.}
+		\]
+	\end{de}
+
+	\begin{rem}
+		Если $A$ выпукло и содержит ноль, то из того, что $\tfrac{x}{t} \in A$, следует, что $\tfrac{x}{s} \in A$ для любого $s > t$.
+	\end{rem}
 
 \end{document}

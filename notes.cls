@@ -87,22 +87,22 @@
 
 \renewcommand{\arraystretch}{1}
 
-\counterwithin{thm}{section}
-\counterwithin{de}{section}
-\counterwithin{lm}{section}
-\counterwithin{st}{section}
-\counterwithin{exm}{section}
-\counterwithin{pr}{section}
-\counterwithin{cor}{section}
-\counterwithin{rem}{section}
-\renewcommand{\thethm}{\arabic{section}.\arabic{thm}}
-\renewcommand{\thede}{\arabic{section}.\arabic{de}}
-\renewcommand{\thelm}{\arabic{section}.\arabic{lm}}
-\renewcommand{\thest}{\arabic{section}.\arabic{st}}
-\renewcommand{\theexm}{\arabic{section}.\arabic{exm}}
-\renewcommand{\therem}{\arabic{section}.\arabic{rem}}
-\renewcommand{\thepr}{\arabic{section}.\arabic{pr}}
-\renewcommand{\thecor}{\arabic{section}.\arabic{cor}}
+\counterwithin{thm}{subsection}
+\counterwithin{de}{subsection}
+\counterwithin{lm}{subsection}
+\counterwithin{st}{subsection}
+\counterwithin{exm}{subsection}
+\counterwithin{pr}{subsection}
+\counterwithin{cor}{subsection}
+\counterwithin{rem}{subsection}
+\renewcommand{\thethm}{\arabic{subsection}.\arabic{thm}}
+\renewcommand{\thede}{\arabic{subsection}.\arabic{de}}
+\renewcommand{\thelm}{\arabic{subsection}.\arabic{lm}}
+\renewcommand{\thest}{\arabic{subsection}.\arabic{st}}
+\renewcommand{\theexm}{\arabic{subsection}.\arabic{exm}}
+\renewcommand{\therem}{\arabic{subsection}.\arabic{rem}}
+\renewcommand{\thepr}{\arabic{subsection}.\arabic{pr}}
+\renewcommand{\thecor}{\arabic{subsection}.\arabic{cor}}
 
 
 
