@@ -4,6 +4,7 @@
 \DeclareMathOperator{\esssup}{esssup}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\Int}{Int}
+\newcommand{\mink}{\mathfrak{m}}
 
 
 \begin{document}
@@ -237,16 +238,56 @@
 			\]
 		\end{proof}
 	\end{st}
-
+h
 	\begin{de}
 		Пусть $A$~--- поглощающее множество. Тогда 
 		\[
-			\mathfrak{m}_A(x) = \inf \left\{t \, \big| \, \dfrac{x}{t} \in A\right\} \text{~--- функционал Минковского.}
+			\mink_A(x) = \inf \left\{t \, \big| \, \dfrac{x}{t} \in A\right\} \text{~--- функционал Минковского.}
 		\]
 	\end{de}
 
 	\begin{rem}
 		Если $A$ выпукло и содержит ноль, то из того, что $\tfrac{x}{t} \in A$, следует, что $\tfrac{x}{s} \in A$ для любого $s > t$.
 	\end{rem}
+
+	\begin{st}
+		Пусть $A$~--- выпуклое и поглощающее, и $t > \mink_A(x)$. Тогда $\tfrac{x}{t} \in A$.
+	\end{st}
+
+	\begin{thm}
+		Пусть $A$~--- выпуклое поглощающее множество. Тогда:
+		\begin{enumerate}
+			\item $\all t > 0 \; \mink_A(tx) = t\mink_A(x)$ (положительная однородность),
+			\item  $\mink_A(x + y) \leqslant \mink_A(x) + \mink_A(y)$ (полуаддитивность),
+			\item Если $A$ уравновешенное, $\mink_A$~--- полунорма.
+		\end{enumerate}
+		\begin{proof}
+			$\hphantom{.}$
+			\begin{enumerate}
+				\item 
+				\[
+					\mink_A(tx) = \inf \left\{s \, \big| \, \dfrac{tx}{s} \in A\right\} = t \inf \left\{\dfrac{s}{t} \, \big| \, \dfrac{tx}{s} \in A\right\} = t \mink_A(x).
+				\]
+				\item Для любого $\varepsilon > 0$ найдутся $s$ и $t$ такие, что
+				\[
+					s - \varepsilon < \mink_A(x) < s, \; \dfrac{x}{s} \in A \text{ и } t - \varepsilon < \mink_A(y) < t \text{ и } \dfrac{y}{t} \in A.
+				\]
+				Распишем частное сумм:
+				\[
+					\dfrac{x + y}{s + t} = \dfrac{s}{s + t} \dfrac{x}{s} + \dfrac{t}{s + t} \dfrac{y}{t}.
+				\]
+				По выпуклости это частное лежит в $A$, поэтому
+				\[
+					\mink_A(x + y) \leqslant s + t < \mink_A(x) + \mink_B(y).
+				\]
+				\item Не хватает возможности умножать на любую константу из $\C$. Пусть $\alpha = r\beta$, $r \geqslant 0$, $|\beta| = 1$.
+				\[
+					\mink_A(\alpha x) = \inf \left\{s \, \big| \, \dfrac{\alpha r x}{s} \in A\right\} = \inf \left\{s \, \big| \, \dfrac{ r x}{s} \in \underbrace{\alpha^{-1} A}_{=A}\right\} = \mink_A(rx) = r \mink_A(x) = |\alpha| \mink_A(x).
+				\]
+			\end{enumerate}
+		\end{proof}
+	\end{thm}
+
+\subsection{Теорема о нормируемости}
 
 \end{document}
