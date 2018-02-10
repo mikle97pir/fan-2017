@@ -34,7 +34,7 @@
 \makeatother
 
 %\RequirePackage{cmap}
-\RequirePackage{hyperref}
+%\RequirePackage{hyperref}
 \theoremstyle{definition}
 \newtheorem{thm}{Теорема}
 \newtheorem{de}{Определение}
@@ -67,7 +67,8 @@
 \newcommand*{\N}{\mathbb{N}}
 \newcommand*{\DD}{\mathbb{D}}
 \newcommand*{\K}{\mathbb{K}}
-\renewcommand*{\C}{\mathbb{C}}
+%\renewcommand*{\C}{\mathbb{C}}
+\newcommand*{\C}{\mathbb{C}}
 \newcommand*{\Q}{\mathbb{Q}}
 \newcommand{\An}{\wedge}
 \newcommand{\Or}{\vee}
